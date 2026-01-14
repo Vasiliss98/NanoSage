@@ -120,7 +120,7 @@ The UI lets you select:
 - FAISS root folder or a single index/meta pair
 - Retrieval model (must match your index embedding model)
 
-**Note for Windows users:** The UI launcher prefers Python 3.10/3.11. If you installed a very new Python (e.g., 3.14) and see `%1 is not a valid Win32 application`, install Python 3.11 and try again. The launcher will fall back automatically if multiple versions are installed.
+**Note for Windows users:** The UI launcher prefers Python 3.10/3.11. If you installed Python 3.13+ (e.g., 3.14) and see `%1 is not a valid Win32 application`, install Python 3.11 and try again. The launcher will skip Python 3.13+ on PATH and fall back automatically if other versions are installed.
 
 **Parameters**:
 - `--query`: Main search query (natural language).

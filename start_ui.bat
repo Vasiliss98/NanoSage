@@ -14,8 +14,13 @@ if %errorlevel%==0 (
 
 where python >nul 2>nul
 if %errorlevel%==0 (
-  python -m streamlit run app.py
-  if %errorlevel%==0 goto :eof
+  python -c "import sys; sys.exit(0 if sys.version_info < (3, 13) else 1)"
+  if %errorlevel%==0 (
+    python -m streamlit run app.py
+    if %errorlevel%==0 goto :eof
+  ) else (
+    echo Detected Python 3.13+ on PATH. Streamlit may fail with it on Windows.
+  )
 )
 
 echo Failed to launch Streamlit.
