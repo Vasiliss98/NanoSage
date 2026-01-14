@@ -163,6 +163,29 @@ python main.py --query "AI in finance" \
 
 Now the system searches **both** local docs and web data (if `--web_search` is enabled).
 
+#### ✅ Using a FAISS Index (index.faiss + meta.jsonl)
+
+If you already have FAISS indexes and JSONL metadata (one line per document), you can load them directly:
+
+```bash
+pip install faiss-cpu
+
+python main.py --query "contract law precedents" \
+               --faiss_index_path "C:\path\to\index.faiss" \
+               --faiss_meta_path "C:\path\to\meta.jsonl" \
+               --retrieval_model all-minilm
+```
+
+Make sure the FAISS index was built with embeddings from the same retrieval model you select (e.g., `all-minilm`). The metadata lines should include `file_path` and optional `snippet` fields for best report output.
+
+If you have many year/court folders, point to a root directory that contains multiple `index.faiss` + `meta.jsonl` pairs and NanoSage will load them all:
+
+```bash
+python main.py --query "contract law precedents" \
+               --faiss_root_dir "C:\Users\vasil\Desktop\Ai project\_INDEX" \
+               --retrieval_model all-minilm
+```
+
 #### 🔄 RAG with Gemma 2B
 
 ```bash
