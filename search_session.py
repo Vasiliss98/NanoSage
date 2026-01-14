@@ -440,6 +440,14 @@ class SearchSession:
         for entry in self.faiss_indexes:
             index = entry["index"]
             metadata = entry["metadata"]
+            if getattr(index, "d", None) != query_vector.shape[1]:
+                raise RuntimeError(
+                    "Embedding dim mismatch: index.d="
+                    f"{getattr(index, 'd', 'unknown')} but query embedding dim={query_vector.shape[1]} "
+                    f"for index {entry['index_path']}. "
+                    "Fix: run with the SAME embedding model used to build the index "
+                    "(e.g., set --retrieval_model to the model used during indexing)."
+                )
             distances, indices = index.search(query_vector, top_k)
             metric_type = getattr(index, "metric_type", None)
             if metric_type is None:
