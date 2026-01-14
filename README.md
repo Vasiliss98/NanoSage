@@ -104,6 +104,22 @@ python main.py --query "artificial intelligence" --retrieval_model all-minilm --
 python main.py --query "research papers" --corpus_dir ./my_documents --retrieval_model colpali
 ```
 
+### ✅ Easy UI (No Command Line)
+
+If you prefer a simple UI, use the Streamlit app:
+
+1. **Install dependencies** (one time):
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. **Double-click** `start_ui.bat` (Windows) to launch the UI.
+3. A browser window will open with the NanoSage UI.
+
+The UI lets you select:
+- Query text
+- FAISS root folder or a single index/meta pair
+- Retrieval model (must match your index embedding model)
+
 **Parameters**:
 - `--query`: Main search query (natural language).
 - `--web_search`: Enables web-based retrieval via Tavily API.
